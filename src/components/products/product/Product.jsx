@@ -3,12 +3,16 @@ import { Typography, Card, CardMedia, CardContent, CardActions, IconButton } fro
 import { AddShoppingCart } from '@material-ui/icons'
 import useStyles from './styles'
 
+
+// product coming from Products.jsx as props through commercejs and App.js
 const Product = ({ product }) => {
+
+
     const classes = useStyles();
     return (
         <div>
             <Card className={classes.root}>
-                <CardMedia className={classes.media} image={product.image} title={product.name}>
+                <CardMedia className={classes.media} image={product.media.source} title={product.name}>
 
                 </CardMedia>
                 <CardContent>
@@ -17,12 +21,10 @@ const Product = ({ product }) => {
                             {product.name}
                         </Typography>
                         <Typography variant="h5" >
-                            {product.price}
+                            {product.price.formatted_with_symbol}
                         </Typography>
                     </div>
-                    <Typography variant="h5" color='textSecondary' >
-                        {product.description}
-                    </Typography>
+                    <Typography dangerouslySetInnerHTML={{ __html: product.description }} variant="h5" color='textSecondary' />
                 </CardContent>
                 <CardActions disableSpacing className={classes.cardActions} >
                     <IconButton aria-label='Add to Cart'>
