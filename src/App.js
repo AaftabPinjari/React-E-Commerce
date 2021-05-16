@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Cart from './components/cart/Cart'
 import Navbar from './components/navbar/Navbar'
 import Products from './components/products/Products'
+import Checkout from './components/checkoutForm/checkout/Checkout'
 import { commerce } from './lib/commerce'
 
 
@@ -12,6 +13,8 @@ const App = () => {
     const [cart, setCart] = useState({})
 
 
+
+    // all the api calls to commerce.js for editing the products
     const fetchProducts = async () => {
         const { data } = await commerce.products.list()
 
@@ -26,7 +29,7 @@ const App = () => {
 
         setCart(cart);
     }
-    const handleUpdateaCartQuantity = async (productId, quantity) => {
+    const handleUpdateCartQuantity = async (productId, quantity) => {
         const { cart } = await commerce.cart.update(productId, { quantity })
         setCart(cart);
     }
@@ -40,7 +43,7 @@ const App = () => {
     }
 
 
-
+    //
 
     useEffect(() => {
         fetchProducts()
@@ -60,10 +63,13 @@ const App = () => {
                     <Route exact path="/cart">
                         <Cart
                             cart={cart}
-                            handleUpdateaCartQuantity={handleUpdateaCartQuantity}
+                            handleUpdateCartQuantity={handleUpdateCartQuantity}
                             handleRemoveFromCart={handleRemoveFromCart}
                             handleEmptyCart={handleEmptyCart}
                         />
+                    </Route>
+                    <Route exact path="/checkout">
+                        <Checkout />
                     </Route>
 
 
