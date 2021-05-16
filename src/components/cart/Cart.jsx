@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Typography, Button, Grid } from '@material-ui/core'
 import useStyles from './styles'
 import CartItem from './cartItem/CartItem';
+import { Link } from 'react-router-dom'
 
 const Cart = ({ cart }) => {
 
@@ -10,18 +11,22 @@ const Cart = ({ cart }) => {
     const EmptyCart = () => {
 
         return (
-            <><Typography variant="subtitle1" >Your Cart is Empty</Typography></>)
+            <><Typography variant="subtitle1" >Your Cart is Empty
+            <Link to="/" className={classes.link}>Click Here to Add</Link>
+
+            </Typography></>
+        )
     }
 
     const FilledCart = () => {
         return (
             <>
                 <Grid container spacing={3}>
-                    {cart.line_items.map((item) => (
+                    {cart.line_items.map((items) => (
 
 
-                        <Grid item xs={12} sm={6} key={item.id}>
-                            <CartItem item={item} />
+                        <Grid item xs={12} sm={6} md={4} key={items.id}>
+                            <CartItem item={items} />
                         </Grid>
                     ))}
                 </Grid>
@@ -41,7 +46,7 @@ const Cart = ({ cart }) => {
         )
     }
     const classes = useStyles();
-
+    //initially while fetching cart line_items are wmpty so to prevent that this condition is required
     if (!cart.line_items) return 'Loading...'
 
 
