@@ -5,7 +5,7 @@ import useStyles from './styles'
 
 
 // product coming from Products.jsx as props through commercejs and App.js
-const Product = ({ product }) => {
+const Product = ({ product, onAddToCart }) => {
 
 
     const classes = useStyles();
@@ -27,7 +27,7 @@ const Product = ({ product }) => {
                     <Typography dangerouslySetInnerHTML={{ __html: product.description }} variant="h5" color='textSecondary' />
                 </CardContent>
                 <CardActions disableSpacing className={classes.cardActions} >
-                    <IconButton aria-label='Add to Cart'>
+                    <IconButton aria-label='Add to Cart' onClick={() => onAddToCart(product.id, 1)}>
                         <AddShoppingCart />
                     </IconButton>
                 </CardActions>
