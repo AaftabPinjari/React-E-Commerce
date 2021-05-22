@@ -10,6 +10,7 @@ const steps = ['Shipping Address', 'Payment Details'];
 const Checkout = ({ cart }) => {
     const [activeStep, setActiveStep] = useState(0)
     const [checkoutToken, setCheckoutToken] = useState(null)
+    const [shippingsData, setShippingData] = useState({})
     const classes = useStyles();
 
 
@@ -26,6 +27,10 @@ const Checkout = ({ cart }) => {
         }
         generateToken();
     }, [cart])
+
+    const next = (data) => {
+        setShippingData(data)
+    }
 
 
     const Form = () => {
