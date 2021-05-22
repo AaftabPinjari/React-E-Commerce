@@ -5,9 +5,10 @@ import useStyles from './styles'
 import { Link, useLocation } from 'react-router-dom'
 
 
-const Navbar = ({ totalItems }) => {
+const Navbar = ({ cart }) => {
     const location = useLocation()
     const classes = useStyles();
+
 
 
     return (
@@ -21,7 +22,7 @@ const Navbar = ({ totalItems }) => {
                     <div className={classes.grow} />
                     {location.pathname === "/" && (<div className={classes.button}>
                         <IconButton component={Link} to="/cart" aria-label="Show Cart Items" color="inherit">
-                            <Badge badgeContent={totalItems} color="secondary" >
+                            <Badge badgeContent={cart.total_items} color="secondary" >
                                 <ShoppingCart /></Badge>
                         </IconButton>
                     </div>)}
